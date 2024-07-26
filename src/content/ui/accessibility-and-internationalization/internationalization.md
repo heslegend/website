@@ -654,31 +654,32 @@ AppLocalizations.of(context).helloWorldOn(DateTime.utc(1959, 7, 9))
 [`DateFormat`]: {{site.api}}/flutter/intl/DateFormat-class.html
 
 <a id="ios-specifics"></a>
-### Localizing for iOS: Updating the iOS app bundle
+### Localizing for iOS: Updating the iOS App Bundle
 
-Typically, iOS applications define key application metadata,
-including supported locales, in an `Info.plist` file
-that is built into the application bundle.
-To configure the locales supported by your app,
-use the following instructions:
+When developing Flutter apps for iOS, you need to ensure that
+the App Store correctly displays the supported languages, even
+though the actual translations are handled within your Flutter
+code. Follow these steps to configure the iOS app bundle:
 
-1. Open your project's `ios/Runner.xcworkspace` Xcode file.
+1. Open your project's `ios/Runner.xcodeproj` Xcode file.
 
-2. In the **Project Navigator**, open the `Info.plist` file
-   under the `Runner` project's `Runner` folder.
+2. In the **Project Navigator**, select the **Runner** project
+   under **Projects**.
 
-3. Select the **Information Property List** item.
-   Then select **Add Item** from the **Editor** menu,
-   and select **Localizations** from the pop-up menu.
+3. Select the **Info** tab in the project editor.
 
-4. Select and expand the newly-created `Localizations` item.
-   For each locale your application supports,
-   add a new item and select the locale you wish to add
-   from the pop-up menu in the **Value** field.
-   This list should be consistent with the languages listed
-   in the [`supportedLocales`][] parameter.
+4. Under the **Localizations** section, click the **Add** button
+   (`+`) to add the languages and regions your app supports.
+   Choose the desired language and region combinations from the
+   pop-up menu.
 
-5. Once all supported locales have been added, save the file.
+5. When asked to choose files and reference language, simply select **Finish**.
+
+6. Xcode will automatically create empty `.strings` files and
+   update the `ios/Runner.xcodeproj/project.pbxproj` file.
+   Although Flutter handles translations, these files are 
+   necessary for the App Store to recognize your app's supported
+   languages.
 
 <a id="advanced-customization"></a>
 ## Advanced topics for further customization
